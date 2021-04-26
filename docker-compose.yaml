@@ -1,0 +1,68 @@
+version: "3"
+services:
+  nodered: 
+    build: ./nodered
+    image: loaclbuild/nodered:april2021
+    container_name: nodered
+    restart: unless-stopped
+    ports: 
+      - "1880:1880"
+    volumes:
+      - noderedData:/data
+    networks:
+      - edge
+  grafana:
+    build: ./grafana
+    image: loaclbuild/grafana:april2021
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes: 
+      - grafanaData:/var/lib/grafana
+    networks:
+      - edge
+  influxdb:
+    build: ./influx
+    image: loaclbuild/influxdb:april2021
+    container_name: influxdb
+    restart: unless-stopped
+    environment:
+      INFLUXDB_DB: DBONE
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: change
+      INFLUXDB_ADMIN_PASSWORD: this
+      INFLUXDB_USER: and_change
+      INFLUXDB_USER_PASSWORD: this_too
+    ports:
+      - "8082:8082"
+      - "8086:8086"
+      - "8089:8089"
+    volumes:
+      - influxData:/var/lib/influxdb
+    networks: 
+      - edge
+  mosquitto:
+    build: ./mosquitto
+    image: loaclbuild/mosquitto:april2021
+    container_name: mosquitto
+    restart: unless-stopped
+    ports: 
+      - "8883:1883"
+      - "9001:9001"
+    volumes: 
+      - mosquittoLog:/mosquitto/log
+      - mosquittoData:/mosquitto/data
+    networks:
+      - edge
+#Create internal link network for Containers
+networks:
+  edge:
+
+#Create Volumes for persistent Storage
+volumes:
+  grafanaData:
+  noderedData:
+  influxData:
+  mosquittoLog:
+  mosquittoData:
