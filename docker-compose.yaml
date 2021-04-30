@@ -2,7 +2,7 @@ version: "3"
 services:
   nodered: 
     build: ./nodered
-    image: loaclbuild/nodered:april2021
+    image: localbuild/nodered:april2021
     container_name: nodered
     restart: unless-stopped
     ports: 
@@ -13,7 +13,7 @@ services:
       - edge
   grafana:
     build: ./grafana
-    image: loaclbuild/grafana:april2021
+    image: localbuild/grafana:april2021
     container_name: grafana
     restart: unless-stopped
     ports:
@@ -24,7 +24,7 @@ services:
       - edge
   influxdb:
     build: ./influx
-    image: loaclbuild/influxdb:april2021
+    image: localbuild/influxdb:april2021
     container_name: influxdb
     restart: unless-stopped
     environment:
@@ -44,7 +44,7 @@ services:
       - edge
   mosquitto:
     build: ./mosquitto
-    image: loaclbuild/mosquitto:april2021
+    image: localbuild/mosquitto:april2021
     container_name: mosquitto
     restart: unless-stopped
     ports: 
