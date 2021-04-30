@@ -88,4 +88,6 @@ um die nicht mehr benötigten netzwerke zu löschen
 wie wir nun individuelle einstellungen vornehmen an den Images, 
 das gibt es im nächsten Video. 
 
+Zum nachlesen zu Docker: 
+http://docs.docker.com
 
