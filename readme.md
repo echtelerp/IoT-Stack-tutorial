@@ -1,2 +1,3 @@
 This is for the IoT Stack tutorial :-) 
-the link will follow
+
+https://youtu.be/mzYdsPUI1TA
